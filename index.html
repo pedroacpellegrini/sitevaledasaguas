@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Chalé Vale das Águas — Chácara exclusiva em meio à natureza. Rio, cachoeira e muito verde em Rio Preto, MG." />
+  <title>Chalé Vale das Águas</title>
+  <link rel="icon" type="image/jpeg" href="fotos/logo.jpeg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ===================== NAV ===================== -->
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <!-- Links esquerda -->
+      <nav class="nav-left">
+        <a href="#quem-somos" class="nav-link">O CHALÉ</a>
+        <a href="#espaco" class="nav-link">O ESPAÇO</a>
+        <a href="#galeria" class="nav-link">GALERIA</a>
+      </nav>
+
+      <!-- Logo central -->
+      <div class="nav-logo-wrap" id="navLogoWrap">
+        <a href="#hero" class="nav-logo">
+          <img src="fotos/logo.jpeg" alt="Vale das Águas" class="nav-logo-img" />
+        </a>
+      </div>
+
+      <!-- Links direita -->
+      <nav class="nav-right">
+        <a href="#depoimentos" class="nav-link">DEPOIMENTOS</a>
+        <a href="#localizacao" class="nav-link">LOCALIZAÇÃO</a>
+        <a href="#contato" class="nav-link">CONTATO</a>
+      </nav>
+
+      <!-- Hamburger mobile -->
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Menu mobile -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#quem-somos" class="mobile-link">O Chalé</a>
+      <a href="#espaco" class="mobile-link">O Espaço</a>
+      <a href="#galeria" class="mobile-link">Galeria</a>
+      <a href="#depoimentos" class="mobile-link">Depoimentos</a>
+      <a href="#localizacao" class="mobile-link">Localização</a>
+      <a href="#contato" class="mobile-link">Contato</a>
+    </div>
+  </header>
+
+  <!-- ===================== HERO SLIDESHOW ===================== -->
+  <section class="hero" id="hero">
+
+    <!-- Logo box sobreposta (estilo Quinta do Vale) -->
+    <div class="hero-logo-box">
+      <img src="fotos/logo.jpeg" alt="Vale das Águas" class="hero-logo-img" />
+    </div>
+
+    <!-- Slides -->
+    <div class="hero-track" id="heroTrack">
+      <div class="hero-slide" style="background-image:url('fotos/WhatsApp Image 2026-04-13 at 11.32.54.jpeg')"></div>
+      <div class="hero-slide" style="background-image:url('fotos/WhatsApp Image 2026-04-13 at 11.34.50.jpeg')"></div>
+      <div class="hero-slide" style="background-image:url('fotos/WhatsApp Image 2026-04-13 at 11.52.04.jpeg')"></div>
+      <div class="hero-slide" style="background-image:url('fotos/WhatsApp Image 2026-04-13 at 11.49.49.jpeg')"></div>
+      <div class="hero-slide" style="background-image:url('fotos/WhatsApp Image 2026-04-13 at 11.33.26.jpeg')"></div>
+    </div>
+
+    <!-- Setas -->
+    <button class="hero-arrow hero-arrow--prev" id="heroPrev" aria-label="Slide anterior">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="hero-arrow hero-arrow--next" id="heroNext" aria-label="Próximo slide">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+
+    <!-- Dots -->
+    <div class="hero-dots" id="heroDots"></div>
+  </section>
+
+  <!-- ===================== BARRA DE RESERVA ===================== -->
+  <div class="reserva-bar" id="reservaBar">
+    <div class="reserva-bar-inner">
+      <div class="rb-field">
+        <i class="fas fa-calendar-alt rb-icon"></i>
+        <div class="rb-info">
+          <label>Check-in</label>
+          <input type="date" id="rbCheckin">
+        </div>
+      </div>
+
+      <div class="rb-sep"></div>
+
+      <div class="rb-field">
+        <i class="fas fa-calendar-alt rb-icon"></i>
+        <div class="rb-info">
+          <label>Check-out</label>
+          <input type="date" id="rbCheckout">
+        </div>
+      </div>
+
+      <div class="rb-sep"></div>
+
+      <div class="rb-field">
+        <i class="fas fa-user rb-icon"></i>
+        <div class="rb-info">
+          <label>Hóspedes</label>
+          <select id="rbHospedes">
+            <option value="1">1 hóspede</option>
+            <option value="2" selected>2 hóspedes</option>
+            <option value="3">3 hóspedes</option>
+            <option value="4">4 hóspedes</option>
+            <option value="5">5 hóspedes</option>
+            <option value="6">6+ hóspedes</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="rb-sep"></div>
+
+      <div class="rb-field">
+        <i class="fas fa-home rb-icon"></i>
+        <div class="rb-info">
+          <label>Acomodação</label>
+          <select id="rbAcomodacao">
+            <option value="">Casa completa</option>
+            <option value="casal">Quarto casal</option>
+            <option value="solteiros">Quartos solteiros</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="rb-btn" id="rbBtn">
+        <i class="fab fa-whatsapp"></i>&nbsp; Verificar no WhatsApp
+      </button>
+    </div>
+  </div>
+
+  <!-- ===================== QUEM SOMOS ===================== -->
+  <section class="section" id="quem-somos">
+    <div class="qs-container container">
+      <div class="qs-left reveal">
+        <img src="fotos/WhatsApp Image 2026-04-13 at 11.34.50.jpeg" alt="Vista aérea da Chalé Vale das Águas" />
+      </div>
+      <div class="qs-right reveal">
+        <div class="section-label">
+          <span>Quem somos</span>
+          <span class="section-label-sub">Saiba mais</span>
+          <div class="section-underline"></div>
+        </div>
+
+        <h2 class="qs-title">Chalé Vale das Águas</h2>
+        <p class="qs-desc">
+          Seu refúgio em Três Cruzes. Aqui você aluga a propriedade inteira —
+          uma chácara privada com campinho de futebol/vôlei, trilhas com rio e cachoeiras com muita natureza ao redor.
+          O local conta com um espaço para meditação, assim como áreas para fogueira e slackline.
+        </p>
+        <p class="qs-desc">
+          A casa é completa. Nosso chalé possui duas suítes com capacidade máxima para oito pessoas.
+          Fornece roupa de cama, toalha de banho e cozinha completa com geladeira, fogão, airfryer e todos os
+          utensílios necessários para preparar suas refeições. Possui TV Smart, Internet e uma aconchegante lareira,
+          além de varanda com redes e uma área externa incrível à beira do rio. Venha desfrutar desse paraíso e
+          descobrir por que todos se apaixonam!
+        </p>
+
+        <div class="comodidades">
+          <strong>Comodidades</strong>
+          <div class="tags">
+            <span class="tag">Wi-Fi</span>
+            <span class="tag">Cachoeiras privadas</span>
+            <span class="tag">Gramado para esportes</span>
+            <span class="tag">Cozinha equipada</span>
+            <span class="tag">TV</span>
+            <span class="tag">Varanda c/ redes</span>
+            <span class="tag">Lareira</span>
+            <span class="tag">Trilhas</span>
+            <a href="#espaco" class="tag tag--more">ver mais</a>
+          </div>
+        </div>
+
+        <div class="qs-checkin">
+          <i class="fas fa-clock"></i>
+          <strong>Check-in: flexível | Check-out: até as 16h</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== O ESPAÇO (ACOMODAÇÕES) ===================== -->
+  <section class="section section--gray" id="espaco">
+    <div class="container">
+      <div class="section-label reveal">
+        <span>Acomodações</span>
+        <span class="section-label-sub">Conheça cada ambiente</span>
+        <div class="section-underline"></div>
+      </div>
+
+      <div class="acom-slider-wrap">
+        <div class="acom-slider" id="acomSlider">
+
+          <!-- Card 1 -->
+          <div class="acom-card">
+            <div class="acom-img">
+              <img src="fotos/WhatsApp Image 2026-04-13 at 11.45.32.jpeg" alt="Quarto Casal" loading="lazy" />
+            </div>
+            <div class="acom-body">
+              <h3 class="acom-nome">SUÍTE 1</h3>
+              <p class="acom-desc">
+                Quarto aconchegante com cama de casal e cama de solteiro, roupa de cama incluída,
+                ventilador de teto, janela com vista para o jardim e decoração
+                com arte local nas paredes.
+              </p>
+              <div class="acom-tags">
+                <span class="tag">1 cama de casal</span>
+                <span class="tag">1 cama de solteiro</span>
+                <span class="tag">Banheiro</span>
+                <span class="tag">Guarda-roupa</span>
+              </div>
+              <a href="#contato" class="acom-btn">mais detalhes</a>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="acom-card">
+            <div class="acom-img">
+              <img src="fotos/WhatsApp Image 2026-04-13 at 11.47.32.jpeg" alt="Quarto Solteiros" loading="lazy" />
+            </div>
+            <div class="acom-body">
+              <h3 class="acom-nome">SUÍTE 2</h3>
+              <p class="acom-desc">
+                Quarto espaçoso com cama de casal e cama de solteiro, roupa de cama incluída,
+                janela com boa ventilação. Perfeito para famílias ou grupos de amigos.
+              </p>
+              <div class="acom-tags">
+                <span class="tag">1 cama de casal</span>
+                <span class="tag">1 cama de solteiro</span>
+                <span class="tag">Banheiro</span>
+                <span class="tag">Guarda-roupa</span>
+              </div>
+              <a href="#contato" class="acom-btn">mais detalhes</a>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="acom-card">
+            <div class="acom-img">
+              <img src="fotos/WhatsApp Image 2026-04-13 at 11.46.15.jpeg" alt="Sala de Estar" loading="lazy" />
+            </div>
+            <div class="acom-body">
+              <h3 class="acom-nome">SALA</h3>
+              <p class="acom-desc">
+                Sala ampla com sofá confortável e televisão, integrada à cozinha americana
+                totalmente equipada. Vista para a varanda com redes e o verde da natureza ao fundo.
+              </p>
+              <div class="acom-tags">
+                <span class="tag">TV</span>
+                <span class="tag">Sofá</span>
+                <span class="tag">Mesa de jantar</span>
+                <span class="tag">Cozinha americana equipada</span>
+              </div>
+              <a href="#contato" class="acom-btn">mais detalhes</a>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="acom-card">
+            <div class="acom-img">
+              <img src="fotos/WhatsApp Image 2026-04-13 at 11.46.56.jpeg" alt="Cozinha Americana" loading="lazy" />
+            </div>
+            <div class="acom-body">
+              <h3 class="acom-nome">COZINHA AMERICANA</h3>
+              <p class="acom-desc">
+                Cozinha totalmente equipada com bancada de madeira maciça, fogão,
+                geladeira, utensílios completos e banquetas. Integrada à sala principal.
+              </p>
+              <div class="acom-tags">
+                <span class="tag">Fogão</span>
+                <span class="tag">Geladeira</span>
+                <span class="tag">Bancada madeira</span>
+              </div>
+              <a href="#contato" class="acom-btn">mais detalhes</a>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="acom-card">
+            <div class="acom-img">
+              <img src="fotos/WhatsApp Image 2026-04-13 at 11.48.00.jpeg" alt="Banheiro" loading="lazy" />
+            </div>
+            <div class="acom-body">
+              <h3 class="acom-nome">BANHEIRO</h3>
+              <p class="acom-desc">
+                Banheiro amplo e charmoso com piso de ladrilho hidráulico artesanal,
+                box de vidro temperado, cuba de louça sobre bancada em granito.
+                Toalhas incluídas.
+              </p>
+              <div class="acom-tags">
+                <span class="tag">Ladrilho hidráulico</span>
+                <span class="tag">Box vidro</span>
+                <span class="tag">Toalhas inclusas</span>
+              </div>
+              <a href="#contato" class="acom-btn">mais detalhes</a>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="acom-card">
+            <div class="acom-img">
+              <img src="fotos/WhatsApp Image 2026-04-13 at 11.32.54.jpeg" alt="Varanda com Redes" loading="lazy" />
+            </div>
+            <div class="acom-body">
+              <h3 class="acom-nome">VARANDA</h3>
+              <p class="acom-desc">
+                Varanda coberta com telhado de telha colonial, vista panorâmica para
+                as montanhas e o vale. Equipada com redes para um descanso completo
+                ao ar livre.
+              </p>
+              <div class="acom-tags">
+                <span class="tag">Coberta</span>
+                <span class="tag">Redes</span>
+                <span class="tag">Vista montanhas</span>
+              </div>
+              <a href="#contato" class="acom-btn">mais detalhes</a>
+            </div>
+          </div>
+
+        </div><!-- /acom-slider -->
+
+        <button class="acom-arrow acom-arrow--prev" id="acomPrev" aria-label="Anterior">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="acom-arrow acom-arrow--next" id="acomNext" aria-label="Próximo">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div><!-- /acom-slider-wrap -->
+
+      <div class="acom-dots" id="acomDots"></div>
+    </div>
+  </section>
+
+  <!-- ===================== GALERIA ===================== -->
+  <section class="section" id="galeria">
+    <div class="container">
+      <div class="section-label reveal">
+        <span>Galeria de fotos</span>
+        <span class="section-label-sub">Confira</span>
+        <div class="section-underline"></div>
+      </div>
+
+      <!-- Tabs estilo Quinta do Vale -->
+      <div class="gal-tabs reveal">
+        <button class="gal-tab active" data-gal="externa">ÁREA EXTERNA</button>
+        <button class="gal-tab" data-gal="sala">SALA &amp; COZINHA</button>
+        <button class="gal-tab" data-gal="quartos">QUARTOS</button>
+        <button class="gal-tab" data-gal="banheiro">BANHEIRO</button>
+      </div>
+
+      <!-- Painéis -->
+      <div class="gal-panel active" id="gal-externa">
+        <div class="gal-grid">
+          <div class="gal-item" data-src="fotos/WhatsApp Image 2026-04-13 at 11.32.54.jpeg" data-cap="Varanda com redes">
+            <img src="fotos/WhatsApp Image 2026-04-13 at 11.32.54.jpeg" alt="Varanda com redes" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/WhatsApp Image 2026-04-13 at 11.33.26.jpeg" data-cap="Campo verde">
+            <img src="fotos/WhatsApp Image 2026-04-13 at 11.33.26.jpeg" alt="Campo verde" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/WhatsApp Image 2026-04-13 at 11.34.50.jpeg" data-cap="Vista aérea">
+            <img src="fotos/WhatsApp Image 2026-04-13 at 11.34.50.jpeg" alt="Vista aérea" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/WhatsApp Image 2026-04-13 at 11.38.06.jpeg" data-cap="Balanço à beira do rio">
+            <img src="fotos/WhatsApp Image 2026-04-13 at 11.38.06.jpeg" alt="Balanço à beira do rio" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/WhatsApp Image 2026-04-13 at 11.49.49.jpeg" data-cap="Deck de madeira">
+            <img src="fotos/WhatsApp Image 2026-04-13 at 11.49.49.jpeg" alt="Deck de madeira" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/WhatsApp Image 2026-04-13 at 11.52.04.jpeg" data-cap="Cachoeira">
+            <img src="fotos/WhatsApp Image 2026-04-13 at 11.52.04.jpeg" alt="Cachoeira" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/WhatsApp Image 2026-04-17 at 20.46.04.jpeg" data-cap="Rio com mata nativa">
+            <img src="fotos/WhatsApp Image 2026-04-17 at 20.46.04.jpeg" alt="Rio com mata nativa" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/WhatsApp Image 2026-04-17 at 20.46.04 2.jpeg" data-cap="Fogueira à noite">
+            <img src="fotos/WhatsApp Image 2026-04-17 at 20.46.04 2.jpeg" alt="Fogueira à noite" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/WhatsApp Image 2026-04-17 at 20.46.04 (1).jpeg" data-cap="Varanda com redes e vista para as montanhas">
+            <img src="fotos/WhatsApp Image 2026-04-17 at 20.46.04 (1).jpeg" alt="Varanda com redes e vista para as montanhas" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/WhatsApp Image 2026-04-17 at 20.46.04 (2).jpeg" data-cap="Varanda e gramado">
+            <img src="fotos/WhatsApp Image 2026-04-17 at 20.46.04 (2).jpeg" alt="Varanda e gramado" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/WhatsApp Image 2026-04-17 at 20.46.04 (4).jpeg" data-cap="Rio com deck de madeira">
+            <img src="fotos/WhatsApp Image 2026-04-17 at 20.46.04 (4).jpeg" alt="Rio com deck de madeira" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/WhatsApp Image 2026-04-17 at 20.46.04 (5).jpeg" data-cap="Deck à beira do rio">
+            <img src="fotos/WhatsApp Image 2026-04-17 at 20.46.04 (5).jpeg" alt="Deck à beira do rio" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/IMG_7392.jpg" data-cap="Área de redes e slackline">
+            <img src="fotos/IMG_7392.jpg" alt="Área de redes e slackline" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/IMG_7403.jpg" data-cap="Chuveiro externo à beira do rio">
+            <img src="fotos/IMG_7403.jpg" alt="Chuveiro externo à beira do rio" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/IMG_7413.jpg" data-cap="Área de fogueira com bancos à beira do rio">
+            <img src="fotos/IMG_7413.jpg" alt="Área de fogueira" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/IMG_7510.jpg" data-cap="Varanda e entrada do chalé">
+            <img src="fotos/IMG_7510.jpg" alt="Varanda e entrada do chalé" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gal-panel" id="gal-sala">
+        <div class="gal-grid">
+          <div class="gal-item" data-src="fotos/WhatsApp Image 2026-04-13 at 11.46.15.jpeg" data-cap="Sala de estar">
+            <img src="fotos/WhatsApp Image 2026-04-13 at 11.46.15.jpeg" alt="Sala de estar" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/WhatsApp Image 2026-04-13 at 11.46.56.jpeg" data-cap="Cozinha americana">
+            <img src="fotos/WhatsApp Image 2026-04-13 at 11.46.56.jpeg" alt="Cozinha americana" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/WhatsApp Image 2026-04-13 at 11.47.11.jpeg" data-cap="Sala integrada">
+            <img src="fotos/WhatsApp Image 2026-04-13 at 11.47.11.jpeg" alt="Sala integrada" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/WhatsApp Image 2026-04-13 at 11.53.09.jpeg" data-cap="Sala de jantar">
+            <img src="fotos/WhatsApp Image 2026-04-13 at 11.53.09.jpeg" alt="Sala de jantar" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/WhatsApp Image 2026-04-13 at 11.53.46.jpeg" data-cap="Vista interna para a varanda">
+            <img src="fotos/WhatsApp Image 2026-04-13 at 11.53.46.jpeg" alt="Vista para varanda" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/IMG_7506.jpg" data-cap="Lareira e sala de estar">
+            <img src="fotos/IMG_7506.jpg" alt="Lareira e sala de estar" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/IMG_7535.jpg" data-cap="Sala integrada à cozinha">
+            <img src="fotos/IMG_7535.jpg" alt="Sala integrada à cozinha" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/IMG_7539.jpg" data-cap="Cozinha completa">
+            <img src="fotos/IMG_7539.jpg" alt="Cozinha completa" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/IMG_7548.jpg" data-cap="Mesa de jantar">
+            <img src="fotos/IMG_7548.jpg" alt="Mesa de jantar" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gal-panel" id="gal-quartos">
+        <div class="gal-grid">
+          <div class="gal-item" data-src="fotos/WhatsApp Image 2026-04-13 at 11.45.32.jpeg" data-cap="Quarto casal">
+            <img src="fotos/WhatsApp Image 2026-04-13 at 11.45.32.jpeg" alt="Quarto casal" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/WhatsApp Image 2026-04-13 at 11.47.32.jpeg" data-cap="Quarto solteiros">
+            <img src="fotos/WhatsApp Image 2026-04-13 at 11.47.32.jpeg" alt="Quarto solteiros" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/WhatsApp Image 2026-04-17 at 20.46.04 (3).jpeg" data-cap="Suíte 2 — duas camas de solteiro">
+            <img src="fotos/WhatsApp Image 2026-04-17 at 20.46.04 (3).jpeg" alt="Suíte 2" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/IMG_7491.jpg" data-cap="Suíte 1 — cama de casal">
+            <img src="fotos/IMG_7491.jpg" alt="Suíte 1 — cama de casal" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/IMG_7513.jpg" data-cap="Suíte 2 — camas de solteiro">
+            <img src="fotos/IMG_7513.jpg" alt="Suíte 2 — camas de solteiro" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gal-panel" id="gal-banheiro">
+        <div class="gal-grid">
+          <div class="gal-item" data-src="fotos/WhatsApp Image 2026-04-13 at 11.48.00.jpeg" data-cap="Banheiro">
+            <img src="fotos/WhatsApp Image 2026-04-13 at 11.48.00.jpeg" alt="Banheiro" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/IMG_7498.jpg" data-cap="Banheiro — pia e espelho">
+            <img src="fotos/IMG_7498.jpg" alt="Banheiro — pia e espelho" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/IMG_7501.jpg" data-cap="Banheiro — azulejo estampado">
+            <img src="fotos/IMG_7501.jpg" alt="Banheiro — azulejo estampado" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="gal-item" data-src="fotos/IMG_7530.jpg" data-cap="Banheiro — bancada em madeira">
+            <img src="fotos/IMG_7530.jpg" alt="Banheiro — bancada em madeira" loading="lazy" />
+            <div class="gal-hover"><i class="fas fa-expand-alt"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gal-ver-mais reveal">
+        <a href="#contato" class="gal-link">ver mais <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lb" id="lb">
+      <button class="lb-close" id="lbClose"><i class="fas fa-times"></i></button>
+      <button class="lb-prev"  id="lbPrev"><i class="fas fa-chevron-left"></i></button>
+      <button class="lb-next"  id="lbNext"><i class="fas fa-chevron-right"></i></button>
+      <img  class="lb-img" id="lbImg" src="" alt="" />
+      <p    class="lb-cap" id="lbCap"></p>
+    </div>
+  </section>
+
+  <!-- ===================== DEPOIMENTOS ===================== -->
+  <section class="section section--gray" id="depoimentos">
+    <div class="container">
+      <div class="section-label reveal">
+        <span>Depoimentos</span>
+        <span class="section-label-sub">Depoimento de nossos hóspedes!</span>
+        <div class="section-underline"></div>
+      </div>
+
+      <div class="dep-slider-wrap">
+        <div class="dep-slider" id="depSlider">
+
+          <div class="dep-pair">
+            <div class="dep-card reveal">
+              <div class="dep-quote"><i class="fas fa-quote-left"></i></div>
+              <p>
+                "Ficamos um final de semana e não queríamos sair. A casa é
+                linda, muito limpa e bem equipada. O deck à beira do rio é
+                simplesmente espetacular. Recomendo demais!"
+              </p>
+              <div class="dep-autor">— Carlos &amp; Mariana S., Rio de Janeiro/RJ</div>
+            </div>
+            <div class="dep-card reveal">
+              <div class="dep-quote"><i class="fas fa-quote-left"></i></div>
+              <p>
+                "A melhor experiência de hospedagem que já tivemos. Privacidade
+                total, natureza preservada e o conforto de uma casa completa.
+                A cachoeira na propriedade é um diferencial que não tem igual!"
+              </p>
+              <div class="dep-autor">— Roberto A., Belo Horizonte/MG</div>
+            </div>
+          </div>
+
+          <div class="dep-pair">
+            <div class="dep-card reveal">
+              <div class="dep-quote"><i class="fas fa-quote-left"></i></div>
+              <p>
+                "Fui com a família inteira — 7 pessoas — e a casa comportou todo
+                mundo com folga. Cozinha ótima, banheiro espaçoso e a varanda
+                com redes foi o ponto alto. Proprietário super atencioso!"
+              </p>
+              <div class="dep-autor">— Fernanda L., Curitiba/PR</div>
+            </div>
+          </div>
+
+        </div>
+
+        <button class="dep-arrow dep-arrow--prev" id="depPrev"><i class="fas fa-chevron-left"></i></button>
+        <button class="dep-arrow dep-arrow--next" id="depNext"><i class="fas fa-chevron-right"></i></button>
+      </div>
+
+      <div class="dep-dots" id="depDots"></div>
+      <div class="dep-ver-todos">
+        <a href="https://wa.me/5524993340530" target="_blank" rel="noopener" class="dep-link">
+          ver todos <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <!-- Formulário de novos depoimentos -->
+      <div class="dep-form-wrap reveal">
+        <h3 class="dep-form-title">Deixe seu depoimento</h3>
+        <p class="dep-form-sub">Já se hospedou aqui? Compartilhe sua experiência!</p>
+        <form id="depForm" class="dep-form" novalidate>
+          <div class="dep-form-row">
+            <input type="text" id="depNome" class="dep-input" placeholder="Seu nome e cidade (ex: Maria S., São Paulo/SP)" required maxlength="60">
+          </div>
+          <div class="dep-form-row">
+            <textarea id="depTexto" class="dep-textarea" rows="4" placeholder="Conte sua experiência na Chalé Vale das Águas..." required maxlength="400"></textarea>
+          </div>
+          <button type="submit" class="dep-form-btn">
+            <i class="fas fa-paper-plane"></i>&nbsp; Enviar depoimento
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LOCALIZAÇÃO ===================== -->
+  <section class="section" id="localizacao">
+    <div class="loc-grid">
+      <!-- Info lado esquerdo -->
+      <div class="loc-info reveal">
+        <div class="section-label">
+          <span>Localização</span>
+          <span class="section-label-sub">Como nos encontrar</span>
+          <div class="section-underline"></div>
+        </div>
+
+        <div class="loc-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <div>
+            <strong>Endereço</strong>
+            <span>Estrada Três Cruzes / Funil — Rio Preto, MG</span>
+          </div>
+        </div>
+
+        <div class="loc-dist">
+          <strong>Distâncias</strong>
+          <ul>
+            <li><i class="fas fa-city"></i> Rio de Janeiro — 209 km</li>
+            <li><i class="fas fa-city"></i> Juiz de Fora — 76 km</li>
+            <li><i class="fas fa-city"></i> São Paulo — 401 km</li>
+          </ul>
+        </div>
+
+        <a href="https://maps.app.goo.gl/Th8T2HMaLnKRRsxd9" target="_blank" rel="noopener" class="loc-btn">
+          <i class="fas fa-directions"></i> Abrir no Google Maps
+        </a>
+      </div>
+
+      <!-- Mapa lado direito -->
+      <div class="loc-map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3709.8!2d-43.8023926!3d-21.994597!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9f2d0059483177%3A0x8148f977659966ae!2sVale%20das%20%C3%81guas!5e0!3m2!1spt-BR!2sbr!4v1699000000000!5m2!1spt-BR!2sbr"
+          width="100%" height="100%" style="border:0;" allowfullscreen
+          loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          title="Localização Chalé Vale das Águas — Rio Preto, MG"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTATO ===================== -->
+  <section class="section section--gray" id="contato">
+    <div class="container">
+      <div class="section-label reveal">
+        <span>Contato</span>
+        <span class="section-label-sub">Fale conosco</span>
+        <div class="section-underline"></div>
+      </div>
+
+      <div class="contato-grid">
+        <div class="contato-info reveal">
+          <a href="https://wa.me/5524993340530?text=Olá!%20Tenho%20interesse%20na%20Pousada%20Vale%20das%20Águas." target="_blank" rel="noopener" class="canal-card canal-card--wa">
+            <div class="canal-ic"><i class="fab fa-whatsapp"></i></div>
+            <div>
+              <strong>WhatsApp</strong>
+              <span>(24) 99334-0530</span>
+              <em>Resposta em minutos</em>
+            </div>
+            <i class="fas fa-chevron-right canal-chev"></i>
+          </a>
+          <a href="https://www.instagram.com/valedasaguas.chale?igsh=MWUxaWJ3M2xhcWs0aA==" target="_blank" rel="noopener" class="canal-card canal-card--ig">
+            <div class="canal-ic"><i class="fab fa-instagram"></i></div>
+            <div>
+              <strong>Instagram</strong>
+              <span>@valedasaguas.chale</span>
+              <em>Fotos e novidades</em>
+            </div>
+            <i class="fas fa-chevron-right canal-chev"></i>
+          </a>
+          <a href="tel:+5524993340530" class="canal-card">
+            <div class="canal-ic"><i class="fas fa-phone-alt"></i></div>
+            <div>
+              <strong>Telefone</strong>
+              <span>(24) 99334-0530</span>
+              <em>Seg–Dom, 8h–20h</em>
+            </div>
+            <i class="fas fa-chevron-right canal-chev"></i>
+          </a>
+          <a href="mailto:consentino.lc@gmail.com" class="canal-card">
+            <div class="canal-ic"><i class="fas fa-envelope"></i></div>
+            <div>
+              <strong>E-mail</strong>
+              <span>consentino.lc@gmail.com</span>
+              <em>Resposta em até 24h</em>
+            </div>
+            <i class="fas fa-chevron-right canal-chev"></i>
+          </a>
+
+          <div class="horario-box">
+            <p><i class="fas fa-users"></i> <strong>Capacidade:</strong> até 8 pessoas</p>
+          </div>
+        </div>
+
+        <form class="form-box reveal" id="formContato" novalidate>
+          <h3>Envie uma mensagem</h3>
+          <div class="fg">
+            <label for="fn">Nome completo</label>
+            <input type="text" id="fn" name="nome" placeholder="Seu nome" required />
+          </div>
+          <div class="fg">
+            <label for="fe">E-mail</label>
+            <input type="email" id="fe" name="email" placeholder="seu@email.com" required />
+          </div>
+          <div class="fg">
+            <label for="ftel">Telefone / WhatsApp</label>
+            <input type="tel" id="ftel" name="tel" placeholder="(00) 00000-0000" />
+          </div>
+          <div class="fg">
+            <label for="fm">Mensagem</label>
+            <textarea id="fm" name="msg" rows="4" placeholder="Datas desejadas, número de pessoas e dúvidas..." required></textarea>
+          </div>
+          <button type="submit" class="form-btn">
+            <i class="fas fa-paper-plane"></i> Enviar mensagem
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="footer-top container">
+      <div class="footer-brand">
+        <p class="footer-nome">CHALÉ VALE DAS ÁGUAS</p>
+        <div class="footer-stars">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+        </div>
+      </div>
+
+      <div class="footer-cols">
+        <div class="footer-col">
+          <i class="fas fa-phone-alt footer-ic"></i>
+          <div>
+            <p>Telefone: <a href="tel:+5524993340530">(24) 99334-0530</a></p>
+            <p>WhatsApp: <a href="https://wa.me/5524993340530">+55 (24) 99334-0530</a></p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <i class="fas fa-envelope footer-ic"></i>
+          <div>
+            <p><a href="mailto:consentino.lc@gmail.com">consentino.lc@gmail.com</a></p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <i class="fas fa-map-marker-alt footer-ic"></i>
+          <div>
+            <p>254X+52 — Rio Preto, MG</p>
+            <p>CEP 36132-000 | Minas Gerais | Brasil</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-social">
+        <a href="https://www.instagram.com/valedasaguas.chale?igsh=MWUxaWJ3M2xhcWs0aA==" aria-label="Instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://wa.me/5524993340530" aria-label="WhatsApp" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-in">
+        <p>© 2025 Chalé Vale das Águas. Todos os direitos reservados.</p>
+        <a href="#" class="footer-privacidade">Política de Privacidade</a>
+      </div>
+    </div>
+  </footer>
+
+
+<!-- Toast de confirmação -->
+<div class="toast" id="toast" aria-live="polite">
+  <i class="fas fa-check-circle"></i>
+  <span id="toastMsg">Mensagem enviada! Entraremos em contato em breve.</span>
+</div>
+
+<!-- WhatsApp flutuante -->
+  <a href="https://wa.me/5524993340530?text=Olá!%20Tenho%20interesse%20na%20Pousada%20Vale%20das%20Águas." class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
