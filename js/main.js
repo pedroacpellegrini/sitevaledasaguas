@@ -233,30 +233,60 @@
 })();
 
 
-/* ---- DEPOIMENTOS carrossel ---- */
+/* ---- DEPOIMENTOS carrossel + formulário ---- */
 (function () {
   const slider  = document.getElementById('depSlider');
   const dotsEl  = document.getElementById('depDots');
   const btnPrev = document.getElementById('depPrev');
   const btnNext = document.getElementById('depNext');
+  const form    = document.getElementById('depForm');
   if (!slider) return;
 
-  const pairs = Array.from(slider.querySelectorAll('.dep-pair'));
+  const STORE_KEY = 'vda_depoimentos_v2';
   let current = 0;
+  let pairs   = [];
 
-  pairs.forEach((_, i) => {
-    const d = document.createElement('button');
-    d.className = 'dep-dot' + (i === 0 ? ' active' : '');
-    d.addEventListener('click', () => goTo(i));
-    dotsEl.appendChild(d);
-  });
+  /* ---- localStorage ---- */
+  function loadSaved() {
+    try { return JSON.parse(localStorage.getItem(STORE_KEY)) || []; }
+    catch { return []; }
+  }
+  function saveDep(dep) {
+    const all = loadSaved(); all.push(dep);
+    localStorage.setItem(STORE_KEY, JSON.stringify(all));
+  }
 
+  /* ---- card DOM ---- */
+  function makeCard(dep) {
+    const c = document.createElement('div');
+    c.className = 'dep-card';
+    c.innerHTML =
+      `<div class="dep-quote"><i class="fas fa-quote-left"></i></div>` +
+      `<p>"${dep.texto}"</p>` +
+      `<div class="dep-autor">— ${dep.nome}</div>`;
+    return c;
+  }
+
+  /* ---- carousel ---- */
   const getDots = () => Array.from(dotsEl.querySelectorAll('.dep-dot'));
 
   function goTo(idx) {
     current = (idx + pairs.length) % pairs.length;
     slider.style.transform = `translateX(-${current * 100}%)`;
     getDots().forEach((d, i) => d.classList.toggle('active', i === current));
+  }
+
+  function buildCarousel() {
+    pairs = Array.from(slider.querySelectorAll('.dep-pair'));
+    current = 0;
+    dotsEl.innerHTML = '';
+    pairs.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.className = 'dep-dot' + (i === 0 ? ' active' : '');
+      d.addEventListener('click', () => goTo(i));
+      dotsEl.appendChild(d);
+    });
+    slider.style.transform = 'translateX(0)';
   }
 
   btnPrev.addEventListener('click', () => goTo(current - 1));
@@ -268,6 +298,36 @@
     const dx = e.changedTouches[0].clientX - tx;
     if (Math.abs(dx) > 50) goTo(current + (dx < 0 ? 1 : -1));
   });
+
+  /* ---- carrega depoimentos do localStorage ---- */
+  function loadUserDeps() {
+    slider.querySelectorAll('.dep-pair--user').forEach(p => p.remove());
+    const saved = loadSaved();
+    for (let i = 0; i < saved.length; i += 2) {
+      const pair = document.createElement('div');
+      pair.className = 'dep-pair dep-pair--user';
+      pair.appendChild(makeCard(saved[i]));
+      if (saved[i + 1]) pair.appendChild(makeCard(saved[i + 1]));
+      slider.appendChild(pair);
+    }
+    buildCarousel();
+  }
+
+  /* ---- formulário ---- */
+  if (form) {
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const nome  = document.getElementById('depNome').value.trim();
+      const texto = document.getElementById('depTexto').value.trim();
+      if (!nome || !texto) return;
+      saveDep({ nome, texto });
+      loadUserDeps();
+      form.reset();
+      showToast('Depoimento enviado! Obrigado pela sua avaliação 😊');
+    });
+  }
+
+  loadUserDeps();
 })();
 
 
@@ -302,106 +362,3 @@ function showToast(msg) {
 })();
 
 
-/* ---- FORMULÁRIO DE DEPOIMENTOS ---- */
-(function () {
-  const form    = document.getElementById('depForm');
-  const slider  = document.getElementById('depSlider');
-  const dotsEl  = document.getElementById('depDots');
-  const btnPrev = document.getElementById('depPrev');
-  const btnNext = document.getElementById('depNext');
-  if (!form || !slider) return;
-
-  const STORE_KEY = 'vda_depoimentos';
-
-  /* Carrega depoimentos salvos do localStorage */
-  function loadSaved() {
-    try { return JSON.parse(localStorage.getItem(STORE_KEY)) || []; }
-    catch { return []; }
-  }
-
-  /* Salva novo depoimento */
-  function save(dep) {
-    const all = loadSaved();
-    all.push(dep);
-    localStorage.setItem(STORE_KEY, JSON.stringify(all));
-  }
-
-  /* Cria um card HTML de depoimento */
-  function makeCard(dep) {
-    const card = document.createElement('div');
-    card.className = 'dep-card';
-    card.innerHTML =
-      `<div class="dep-quote"><i class="fas fa-quote-left"></i></div>` +
-      `<p>"${dep.texto}"</p>` +
-      `<div class="dep-autor">— ${dep.nome}</div>`;
-    return card;
-  }
-
-  /* Reconstrói o slider com os pares atuais (incluindo salvos) */
-  function rebuildSlider() {
-    const saved = loadSaved();
-    if (!saved.length) return;
-
-    /* Remove pares gerados por depoimentos anteriores */
-    slider.querySelectorAll('.dep-pair--user').forEach(p => p.remove());
-
-    /* Agrupa os depoimentos salvos em pares */
-    for (let i = 0; i < saved.length; i += 2) {
-      const pair = document.createElement('div');
-      pair.className = 'dep-pair dep-pair--user';
-      pair.appendChild(makeCard(saved[i]));
-      if (saved[i + 1]) pair.appendChild(makeCard(saved[i + 1]));
-      slider.appendChild(pair);
-    }
-
-    refreshCarousel();
-  }
-
-  /* Recalcula dots e reseta posição */
-  function refreshCarousel() {
-    const pairs = Array.from(slider.querySelectorAll('.dep-pair'));
-    let current = 0;
-
-    dotsEl.innerHTML = '';
-    pairs.forEach((_, i) => {
-      const d = document.createElement('button');
-      d.className = 'dep-dot' + (i === 0 ? ' active' : '');
-      d.addEventListener('click', () => goTo(i));
-      dotsEl.appendChild(d);
-    });
-
-    const getDots = () => Array.from(dotsEl.querySelectorAll('.dep-dot'));
-
-    function goTo(idx) {
-      current = (idx + pairs.length) % pairs.length;
-      slider.style.transform = `translateX(-${current * 100}%)`;
-      getDots().forEach((d, i) => d.classList.toggle('active', i === current));
-    }
-
-    /* Substitui os listeners dos botões de nav */
-    const newPrev = btnPrev.cloneNode(true);
-    const newNext = btnNext.cloneNode(true);
-    btnPrev.parentNode.replaceChild(newPrev, btnPrev);
-    btnNext.parentNode.replaceChild(newNext, btnNext);
-    newPrev.addEventListener('click', () => goTo(current - 1));
-    newNext.addEventListener('click', () => goTo(current + 1));
-
-    goTo(0);
-  }
-
-  /* Ao enviar o formulário */
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const nome  = document.getElementById('depNome').value.trim();
-    const texto = document.getElementById('depTexto').value.trim();
-    if (!nome || !texto) return;
-
-    save({ nome, texto });
-    rebuildSlider();
-    form.reset();
-    showToast('Depoimento enviado! Obrigado pela sua avaliação 😊');
-  });
-
-  /* Injeta os salvos ao carregar a página */
-  rebuildSlider();
-})();

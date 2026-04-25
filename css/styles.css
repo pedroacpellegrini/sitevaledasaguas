@@ -582,6 +582,7 @@ input, select, textarea { font-family: inherit; }
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
 }
+.dep-card:only-child { grid-column: 1 / -1; }
 
 .dep-card {
   background: var(--branco);
