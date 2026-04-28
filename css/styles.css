@@ -220,7 +220,7 @@ input, select, textarea { font-family: inherit; }
   transition: opacity 0.3s ease;
 }
 .hero-logo-img {
-  height: 140px;
+  height: 190px;
   width: auto;
   display: block;
   object-fit: contain;
