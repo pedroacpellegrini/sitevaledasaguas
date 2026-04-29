@@ -60,11 +60,15 @@
   const getDots = () => Array.from(dotsEl.querySelectorAll('.hero-dot'));
 
   function goTo(idx) {
+    const prevVideo = slides[current].querySelector('video');
+    if (prevVideo) prevVideo.pause();
     slides[current].classList.remove('active');
     getDots()[current].classList.remove('active');
     current = (idx + slides.length) % slides.length;
     slides[current].classList.add('active');
     getDots()[current].classList.add('active');
+    const currVideo = slides[current].querySelector('video');
+    if (currVideo) currVideo.play();
   }
 
   slides[0].classList.add('active');
@@ -233,8 +237,17 @@
 })();
 
 
-/* ---- DEPOIMENTOS carrossel + formulário ---- */
+/* ---- DEPOIMENTOS carrossel + formulário (Supabase) ---- */
 (function () {
+  /* ==============================================================
+     CONFIGURAÇÃO SUPABASE
+     Substitua os valores abaixo após criar o projeto no Supabase.
+     Veja as instruções em: SUPABASE_SETUP.md
+  ============================================================== */
+  const SUPABASE_URL    = 'https://gayzlnseqauonjrduycq.supabase.co';
+  const SUPABASE_ANON   = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdheXpsbnNlcWF1b25qcmR1eWNxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc0NDI3NjIsImV4cCI6MjA5MzAxODc2Mn0.Q9uWBVO6nj3XiAdaLVarA2lGmO_QGTKqmRTnm64JIUY';
+  /* ============================================================== */
+
   const slider  = document.getElementById('depSlider');
   const dotsEl  = document.getElementById('depDots');
   const btnPrev = document.getElementById('depPrev');
@@ -242,19 +255,13 @@
   const form    = document.getElementById('depForm');
   if (!slider) return;
 
-  const STORE_KEY = 'vda_depoimentos_v2';
+  const supabaseConfigured = SUPABASE_URL !== 'COLE_AQUI_A_URL_DO_PROJETO';
+  const db = supabaseConfigured
+    ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON)
+    : null;
+
   let current = 0;
   let pairs   = [];
-
-  /* ---- localStorage ---- */
-  function loadSaved() {
-    try { return JSON.parse(localStorage.getItem(STORE_KEY)) || []; }
-    catch { return []; }
-  }
-  function saveDep(dep) {
-    const all = loadSaved(); all.push(dep);
-    localStorage.setItem(STORE_KEY, JSON.stringify(all));
-  }
 
   /* ---- card DOM ---- */
   function makeCard(dep) {
@@ -299,10 +306,19 @@
     if (Math.abs(dx) > 50) goTo(current + (dx < 0 ? 1 : -1));
   });
 
-  /* ---- carrega depoimentos do localStorage ---- */
-  function loadUserDeps() {
+  /* ---- carrega depoimentos do Supabase ---- */
+  async function loadUserDeps() {
     slider.querySelectorAll('.dep-pair--user').forEach(p => p.remove());
-    const saved = loadSaved();
+
+    let saved = [];
+    if (db) {
+      const { data } = await db
+        .from('depoimentos')
+        .select('nome, texto')
+        .order('created_at', { ascending: true });
+      saved = data || [];
+    }
+
     for (let i = 0; i < saved.length; i += 2) {
       const pair = document.createElement('div');
       pair.className = 'dep-pair dep-pair--user';
@@ -315,14 +331,27 @@
 
   /* ---- formulário ---- */
   if (form) {
-    form.addEventListener('submit', e => {
+    form.addEventListener('submit', async e => {
       e.preventDefault();
       const nome  = document.getElementById('depNome').value.trim();
       const texto = document.getElementById('depTexto').value.trim();
       if (!nome || !texto) return;
-      saveDep({ nome, texto });
-      loadUserDeps();
+
+      const btn = form.querySelector('.dep-form-btn');
+      btn.disabled = true;
+
+      if (db) {
+        const { error } = await db.from('depoimentos').insert({ nome, texto });
+        if (error) {
+          showToast('Erro ao enviar. Tente novamente.');
+          btn.disabled = false;
+          return;
+        }
+      }
+
+      await loadUserDeps();
       form.reset();
+      btn.disabled = false;
       showToast('Depoimento enviado! Obrigado pela sua avaliação 😊');
     });
   }

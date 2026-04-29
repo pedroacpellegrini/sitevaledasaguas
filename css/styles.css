@@ -241,6 +241,13 @@ input, select, textarea { font-family: inherit; }
 }
 .hero-slide.active { opacity: 1; }
 
+.hero-slide--video { background: #000; }
+.hero-slide--video video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
 /* Setas */
 .hero-arrow {
   position: absolute; top: 50%; transform: translateY(-50%);
