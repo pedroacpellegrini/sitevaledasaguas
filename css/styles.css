@@ -431,8 +431,6 @@ input, select, textarea { font-family: inherit; }
 .acom-desc {
   font-size: 0.85rem; color: var(--texto-suav);
   line-height: 1.7; margin-bottom: 1rem;
-  display: -webkit-box; -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical; overflow: hidden;
 }
 
 .acom-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 1.25rem; }
@@ -878,7 +876,10 @@ input, select, textarea { font-family: inherit; }
   .nav-left, .nav-right { display: none; }
   .hamburger { display: flex; }
   .nav-logo-wrap { position: static; transform: none; }
-  .nav-inner { justify-content: space-between; }
+  .nav-logo { display: flex; padding: 0.25rem 0.6rem; }
+  .nav-logo-img { height: 68px; width: auto; object-fit: contain; }
+  .nav-inner { justify-content: space-between; height: 80px; }
+  .hero { margin-top: 80px; }
   .hero-logo-box { display: none; }
 }
 
