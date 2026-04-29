@@ -47,7 +47,7 @@
   const btnNext = document.getElementById('heroNext');
   if (!slides.length) return;
 
-  let current = 0, timer;
+  let current = 0, timer, videoEndedHandler = null;
 
   slides.forEach((_, i) => {
     const d = document.createElement('button');
@@ -68,12 +68,32 @@
     slides[current].classList.add('active');
     getDots()[current].classList.add('active');
     const currVideo = slides[current].querySelector('video');
-    if (currVideo) currVideo.play();
+    if (currVideo) { currVideo.currentTime = 0; currVideo.play(); }
   }
 
   slides[0].classList.add('active');
-  const startTimer = () => { timer = setInterval(() => goTo(current + 1), 5500); };
-  const stopTimer  = () => clearInterval(timer);
+
+  function stopTimer() {
+    clearInterval(timer);
+    if (videoEndedHandler) {
+      slides.forEach(s => {
+        const v = s.querySelector('video');
+        if (v) v.removeEventListener('ended', videoEndedHandler);
+      });
+      videoEndedHandler = null;
+    }
+  }
+
+  function startTimer() {
+    stopTimer();
+    const currVideo = slides[current].querySelector('video');
+    if (currVideo) {
+      videoEndedHandler = () => { videoEndedHandler = null; goTo(current + 1); startTimer(); };
+      currVideo.addEventListener('ended', videoEndedHandler, { once: true });
+    } else {
+      timer = setInterval(() => goTo(current + 1), 5500);
+    }
+  }
 
   btnPrev.addEventListener('click', () => { stopTimer(); goTo(current - 1); startTimer(); });
   btnNext.addEventListener('click', () => { stopTimer(); goTo(current + 1); startTimer(); });
