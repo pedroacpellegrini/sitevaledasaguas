@@ -88,6 +88,10 @@
     stopTimer();
     const currVideo = slides[current].querySelector('video');
     if (currVideo) {
+      currVideo.muted = true;
+      currVideo.currentTime = 0;
+      const p = currVideo.play();
+      if (p && p.catch) p.catch(() => { goTo(current + 1); startTimer(); });
       videoEndedHandler = () => { videoEndedHandler = null; goTo(current + 1); startTimer(); };
       currVideo.addEventListener('ended', videoEndedHandler, { once: true });
     } else {
