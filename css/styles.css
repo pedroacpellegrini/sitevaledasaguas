@@ -136,6 +136,7 @@ input, select, textarea { font-family: inherit; }
 
 /* Logo caixa central */
 .nav-logo-wrap {
+  display: none; /* oculta no desktop; reexibida no mobile (<=900px) */
   position: absolute;
   top: 0; left: 50%;
   transform: translateX(-50%);
@@ -882,7 +883,7 @@ input, select, textarea { font-family: inherit; }
   .gal-grid { grid-template-columns: repeat(2, 1fr); }
   .nav-left, .nav-right { display: none; }
   .hamburger { display: flex; }
-  .nav-logo-wrap { position: static; transform: none; }
+  .nav-logo-wrap { display: block; position: static; transform: none; }
   .nav-logo { display: flex; padding: 0.25rem 0.6rem; }
   .nav-logo-img { height: 68px; width: auto; object-fit: contain; }
   .nav-inner { justify-content: space-between; height: 80px; }
